@@ -260,9 +260,9 @@ button { font: inherit; color: inherit; }
 }
 .hero__img {
   position: absolute; inset: 0;
-  background-size: 148% auto; background-position: 46% 8%;
-  filter: contrast(1.2) saturate(1.32) brightness(1.05);
-  transform: scale(1.03);
+  background-size: cover; background-position: 50% 22%;
+  filter: contrast(1.15) saturate(1.25) brightness(1.04);
+  transform: scale(1.02);
   animation: heroDrift 28s ease-in-out infinite alternate;
 }
 @keyframes heroDrift {
@@ -350,7 +350,7 @@ button { font: inherit; color: inherit; }
 .disc:hover { transform: translateY(-4px) scale(1.04); background: rgba(255,255,255,.18); }
 .disc:hover svg { transform: translateY(4px); }
 @media (max-width: 640px) {
-  .hero__img { background-size: 240% auto; background-position: 62% 4%; }
+  .hero__img { background-size: cover; background-position: 62% 18%; }
 }
 
 /* ---------------------------------------------------------------- көшпенділер өркениеті */
