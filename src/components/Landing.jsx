@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import KazakhstanMap from './KazakhstanMap'
 import { OrnamentRule, KoshkarMuiz } from './Ornament'
-import heroImg from '../assets/hero-alash.jpg'
+import heroImg from '../assets/hero-nis.jpg'
 
 export default function Landing({ tasks, done, onOpen }) {
   const [hovered, setHovered] = useState(null)
