@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react'
 import { cards } from '../data/portrait'
 import { playCorrect, playWrong, playFinish, playClick } from '../audio'
-import keneImg from '../assets/kene.jpg'
+import newKeneImg from '../assets/new-kenesary.jpg'
 import Result from './Result'
 
 function shuffle(arr, seed = 11) {
@@ -60,7 +60,7 @@ export default function TaskPortrait({ onComplete }) {
     <div className="portrait">
       <div className="portrait__center">
         <div className="portrait__figure">
-          <img src={keneImg} alt="Кенесары хан бейнесі" />
+          <img src={newKeneImg} alt="Жаңа Кенесары — заманауи реконструкцияланған бейне" />
           <div className="portrait__cap">
             <span>Жаңа Кенесары</span>
             <small>«Барсакелмес» бойынша реконструкцияланған бейне</small>

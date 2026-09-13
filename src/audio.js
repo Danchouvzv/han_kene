@@ -26,9 +26,27 @@ function ensure() {
   return ctx
 }
 
+let unlocked = false
+
 export function unlock() {
   const c = ensure()
-  if (c && c.state === 'suspended') c.resume()
+  if (!c) return c
+  if (c.state === 'suspended') c.resume()
+  if (!unlocked) {
+    unlocked = true
+    // iOS Safari трюкі: аппараттық дыбысты «ояту» үшін бір рет
+    // мүлдем үнсіз буфер ойнатамыз — осыдан кейін ғана осциллятор
+    // дыбыстары кідіріссіз/үзіліссіз шыға бастайды.
+    try {
+      const buf = c.createBuffer(1, 1, 22050)
+      const src = c.createBufferSource()
+      src.buffer = buf
+      src.connect(c.destination)
+      src.start(0)
+    } catch {
+      /* ignore */
+    }
+  }
   return c
 }
 

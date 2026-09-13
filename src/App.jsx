@@ -21,7 +21,7 @@ export const TASKS = [
   {
     key: 'test',
     n: 2,
-    title: 'Тарихи бейнені тану',
+    title: 'Тұлғаны тану',
     desc: 'Теориялық материалмен танысып, Кенесары бейнесі бойынша 10 сұрақтан тұратын экспресс-тестті орындаңыз.',
   },
   {
@@ -80,6 +80,23 @@ export default function App() {
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  // Дыбысты мүмкіндігінше ертерек «ашу»: браузерлер (әсіресе мобильде)
+  // AudioContext-ті тек шынайы пайдаланушы әрекетінен кейін ғана іске
+  // қосады, сондықтан бетпен алғашқы жанасудың өзінде дереу ашамыз —
+  // жауап батырмасын басқанда дыбыс кешікпей/үнсіз қалмауы үшін.
+  useEffect(() => {
+    const onFirstInteract = () => unlock()
+    const opts = { once: true, passive: true, capture: true }
+    window.addEventListener('pointerdown', onFirstInteract, opts)
+    window.addEventListener('touchstart', onFirstInteract, opts)
+    window.addEventListener('keydown', onFirstInteract, opts)
+    return () => {
+      window.removeEventListener('pointerdown', onFirstInteract, opts)
+      window.removeEventListener('touchstart', onFirstInteract, opts)
+      window.removeEventListener('keydown', onFirstInteract, opts)
+    }
   }, [])
 
   useEffect(() => {
