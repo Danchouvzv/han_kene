@@ -4,7 +4,8 @@ import TaskShell from './components/TaskShell'
 import TaskTheory from './components/TaskTheory'
 import TaskQuiz from './components/TaskQuiz'
 import TaskTerms from './components/TaskTerms'
-import TaskFactRecon from './components/TaskFactRecon'
+import TaskQuoteMatch from './components/TaskQuoteMatch'
+import TaskTruthRecon from './components/TaskTruthRecon'
 import TaskPortrait from './components/TaskPortrait'
 import { OrnamentCorners } from './components/Ornament'
 import { startMusic, stopMusic, unlock, playClick } from './audio'
@@ -24,20 +25,26 @@ export const TASKS = [
     desc: 'Теориялық материалмен танысып, Кенесары бейнесі бойынша 10 сұрақтан тұратын экспресс-тестті орындаңыз.',
   },
   {
-    key: 'term',
+    key: 'derek',
     n: 3,
+    title: 'Тарих пен көркем сөз',
+    desc: 'Тарихи дерек пен көркем реконструкцияны сызықпен сәйкестендіру.',
+  },
+  {
+    key: 'term',
+    n: 4,
     title: 'Сөзжұмбақ пен сәйкестендіру',
     desc: 'Көркем шығарма үзінділері және терминологиялық сәйкестендіру.',
   },
   {
-    key: 'derek',
-    n: 4,
-    title: 'Тарих пен көркем сөз',
-    desc: 'Тарихи дерек пен көркем реконструкцияны ажырату және өзара сәйкестендіру.',
+    key: 'shyndyq',
+    n: 5,
+    title: 'Шындық пен көркемдік реконструкция',
+    desc: 'Берілген сөйлемнің тарихи дерек пе, әлде авторлық көркем реконструкциялау ма екенін анықтаңыз.',
   },
   {
     key: 'portret',
-    n: 5,
+    n: 6,
     title: 'Жаңа Кенесары портреті',
     desc: 'Жаңа Кенесарының бейнесін тану: 12 деректің ішінен «Барсакелмес» деректерін таңдау.',
   },
@@ -120,10 +127,12 @@ export default function App() {
         return <TaskTheory onComplete={() => complete('teoriya')} />
       case 'test':
         return <TaskQuiz onComplete={() => complete('test')} />
+      case 'derek':
+        return <TaskQuoteMatch onComplete={() => complete('derek')} />
       case 'term':
         return <TaskTerms onComplete={() => complete('term')} />
-      case 'derek':
-        return <TaskFactRecon onComplete={() => complete('derek')} />
+      case 'shyndyq':
+        return <TaskTruthRecon onComplete={() => complete('shyndyq')} />
       case 'portret':
         return <TaskPortrait onComplete={() => complete('portret')} />
       default:

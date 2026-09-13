@@ -278,7 +278,8 @@ button { font: inherit; color: inherit; }
 }
 .hero__inner {
   position: relative; z-index: 2; width: 100%; max-width: 980px;
-  margin: 0 auto; padding: 0 clamp(18px, 4vw, 34px) clamp(40px, 7vh, 84px);
+  margin: 0 auto;
+  padding: calc(var(--nav-space) + 12px) clamp(18px, 4vw, 34px) clamp(40px, 7vh, 84px);
   display: flex; flex-direction: column; align-items: center; text-align: center;
 }
 .hero__kicker {
@@ -351,6 +352,21 @@ button { font: inherit; color: inherit; }
 @media (max-width: 640px) {
   .hero__img { background-size: 240% auto; background-position: 62% 4%; }
 }
+
+/* ---------------------------------------------------------------- көшпенділер өркениеті */
+
+.nomad {
+  max-width: 880px; margin: 0 auto; padding: clamp(40px, 7vw, 72px) clamp(20px, 4vw, 34px) 0;
+  text-align: center;
+}
+.nomad__orn { width: 40px; margin: 0 auto 22px; color: var(--gold); opacity: .85; }
+.nomad__text {
+  font-family: var(--serif); font-style: italic; font-weight: 500;
+  font-size: clamp(17px, 2.1vw, 24px); line-height: 1.7; letter-spacing: .002em;
+  color: var(--ink-2); margin: 0;
+}
+.nomad__text::before { content: '«'; color: var(--gold); }
+.nomad__text::after { content: '»'; color: var(--gold); }
 
 /* ---------------------------------------------------------------- карта */
 
@@ -514,6 +530,15 @@ button { font: inherit; color: inherit; }
 .sec-h::before { content: ''; width: 22px; height: 2px; background: var(--gold); border-radius: 2px; }
 
 .hint { font-size: 14.5px; line-height: 1.6; color: var(--ink-2); background: var(--gold-soft); border: 1px solid #e3d09b; border-left: 4px solid var(--gold); border-radius: var(--radius-s); padding: 13px 17px; margin: 0 0 20px; }
+
+/* тапсырма беттеріндегі иллюстрация-баннер */
+.task-banner {
+  border-radius: var(--radius); overflow: hidden; margin: 0 0 22px;
+  border: 1px solid var(--line); box-shadow: var(--shadow); aspect-ratio: 16/7;
+}
+.task-banner img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.task-banner--wide { aspect-ratio: 21/8; }
+@media (max-width: 560px) { .task-banner { aspect-ratio: 4/3; } .task-banner--wide { aspect-ratio: 16/10; } }
 
 /* ---------------------------------------------------------------- 1. Теория */
 

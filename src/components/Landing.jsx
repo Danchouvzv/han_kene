@@ -14,7 +14,7 @@ export default function Landing({ tasks, done, onOpen }) {
         <div className="hero__img" style={{ backgroundImage: `url(${heroImg})` }} aria-hidden="true" />
         <div className="hero__veil" aria-hidden="true" />
         <div className="hero__inner">
-          <span className="hero__kicker">Оқу-әдістемелік интерактивті платформа</span>
+          <span className="hero__kicker">Өз бетінше білім алу платформасы</span>
           <h1 className="hero__title">
             <span>Хан</span>
             <span className="ln2">Кене</span>
@@ -41,12 +41,22 @@ export default function Landing({ tasks, done, onOpen }) {
         </div>
       </section>
 
+      <section className="nomad">
+        <KoshkarMuiz className="nomad__orn" />
+        <p className="nomad__text">
+          Көшпенділер өркениеті – ұлан-ғайыр даланы мекен еткен ата-бабаларымыздан қалған, тамыры
+          мыңжылдықтарға тамырласып жатқан аса бай рух пен салт-дәстүрдің алтын қазынасы. Ол –
+          табиғатпен үндесіп өмір сүре білген еркін де өжет халықтың әлемдік өркениетке қосқан
+          қайталанбас қолтаңбасы, ұлттық болмысымыздың таза айнасы.
+        </p>
+      </section>
+
       <section className="mapsec" id="karta">
         <div className="mapsec__head">
           <KoshkarMuiz className="mapsec__orn" />
           <h2>Тапсырмалар картасы</h2>
           <p>
-            Қазақстан картасындағы бес белгінің әрқайсысы — жеке тапсырма. Белгіні басып,
+            Қазақстан картасындағы алты белгінің әрқайсысы — жеке тапсырма. Белгіні басып,
             тапсырманы орындаңыз; орындалған соң белгі ✔ таңбасымен ерекшеленеді.
           </p>
           <OrnamentRule />

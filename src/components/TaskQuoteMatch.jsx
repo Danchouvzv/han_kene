@@ -1,83 +1,7 @@
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
-import { statements, pairs } from '../data/factrecon'
+import { pairs } from '../data/factrecon'
 import { playCorrect, playWrong, playFinish, playClick } from '../audio'
 import Result from './Result'
-
-/* ---------------- А-бөлім: дерек пе, реконструкция ма? ---------------- */
-
-function PartA({ onDone }) {
-  const [i, setI] = useState(0)
-  const [picked, setPicked] = useState(null)
-  const [answers, setAnswers] = useState([])
-  const s = statements[i]
-  const score = answers.filter(Boolean).length
-
-  function pick(isFact) {
-    if (picked !== null) return
-    setPicked(isFact)
-    const ok = isFact === s.fact
-    setAnswers((a) => [...a, ok])
-    ok ? playCorrect() : playWrong()
-  }
-
-  function next() {
-    if (i + 1 >= statements.length) {
-      playFinish()
-      onDone(score)
-    } else {
-      setI(i + 1)
-      setPicked(null)
-    }
-  }
-
-  return (
-    <div className="parta">
-      <div className="quiz__meter">
-        <div className="quiz__meter-bar">
-          <span style={{ width: `${(i / statements.length) * 100}%` }} />
-        </div>
-        <span className="quiz__meter-label">
-          Сөйлем {i + 1} / {statements.length} · дұрыс: {score}
-        </span>
-      </div>
-
-      <blockquote className="stmt">{s.t}</blockquote>
-
-      <div className="stmt__btns">
-        <button
-          type="button"
-          className={`bigbtn bigbtn--fact ${picked !== null ? (s.fact ? 'is-correct' : picked === true ? 'is-wrong' : 'is-dim') : ''}`}
-          onClick={() => pick(true)}
-          disabled={picked !== null}
-        >
-          Тарихи дерек
-        </button>
-        <button
-          type="button"
-          className={`bigbtn bigbtn--recon ${picked !== null ? (!s.fact ? 'is-correct' : picked === false ? 'is-wrong' : 'is-dim') : ''}`}
-          onClick={() => pick(false)}
-          disabled={picked !== null}
-        >
-          Көркем реконструкциялау
-        </button>
-      </div>
-
-      {picked !== null && (
-        <div className={`explain ${picked === s.fact ? 'explain--ok' : 'explain--no'}`}>
-          <b>{picked === s.fact ? 'Дұрыс!' : 'Қате.'}</b> {s.e}
-        </div>
-      )}
-
-      {picked !== null && (
-        <button type="button" className="btn btn--primary btn--wide" onClick={next}>
-          {i + 1 === statements.length ? 'Б-бөлімге өту' : 'Келесі сөйлем'} <span aria-hidden="true">→</span>
-        </button>
-      )}
-    </div>
-  )
-}
-
-/* ---------------- Б-бөлім: сызықпен сәйкестендіру ---------------- */
 
 function shuffle(arr, seed = 7) {
   const a = [...arr]
@@ -90,7 +14,9 @@ function shuffle(arr, seed = 7) {
   return a
 }
 
-function PartB({ onDone }) {
+// Тарих пен көркем сөз: сол бағанда тарихи дерек, оң бағанда — араласқан
+// көркем реконструкциялар. Тышқанмен/сенсормен сызық тартып сәйкестендіру.
+export default function TaskQuoteMatch({ onComplete }) {
   const rights = useMemo(() => shuffle(pairs, 2), [])
   const [links, setLinks] = useState([])
   const [sel, setSel] = useState(null)
@@ -173,7 +99,7 @@ function PartB({ onDone }) {
     if (right === pairs.length) playFinish()
     else if (right > 0) playCorrect()
     else playWrong()
-    onDone(right)
+    onComplete()
   }
 
   const linkOf = (side, id) => links.find((l) => l[side] === id)
@@ -272,44 +198,6 @@ function PartB({ onDone }) {
           <button type="button" className="btn btn--outline" onClick={clear}>
             Қайта орындау
           </button>
-        </>
-      )}
-    </div>
-  )
-}
-
-/* ---------------- Негізгі компонент ---------------- */
-
-export default function TaskFactRecon({ onComplete }) {
-  const [stage, setStage] = useState('a')
-  const [scoreA, setScoreA] = useState(0)
-
-  return (
-    <div className="fr">
-      <div className="stages">
-        <button type="button" className={`stage ${stage === 'a' ? 'is-active' : ''}`} onClick={() => setStage('a')}>
-          <b>А-бөлім</b> Дерек пе, реконструкция ма?
-        </button>
-        <button type="button" className={`stage ${stage === 'b' ? 'is-active' : ''}`} onClick={() => setStage('b')}>
-          <b>Б-бөлім</b> Сызықпен сәйкестендіру
-        </button>
-      </div>
-
-      {stage === 'a' ? (
-        <PartA
-          onDone={(s) => {
-            setScoreA(s)
-            setStage('b')
-          }}
-        />
-      ) : (
-        <>
-          {scoreA > 0 && (
-            <div className="stage-note">
-              А-бөлім нәтижесі: <b>{scoreA} / {statements.length}</b>
-            </div>
-          )}
-          <PartB onDone={() => onComplete()} />
         </>
       )}
     </div>

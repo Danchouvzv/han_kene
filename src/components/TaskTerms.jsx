@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react'
 import { excerpts, definitions, terms } from '../data/terms'
 import { playCorrect, playWrong, playFinish, playClick } from '../audio'
 import Result from './Result'
+import bannerImg from '../assets/terms-banner.jpg'
 
 export default function TaskTerms({ onComplete }) {
   const [choice, setChoice] = useState({})
@@ -41,6 +42,9 @@ export default function TaskTerms({ onComplete }) {
 
   return (
     <div className="terms">
+      <div className="task-banner task-banner--wide">
+        <img src={bannerImg} alt="«Барсакелмес»: тарих пен түсінік" loading="lazy" />
+      </div>
       <section className="terms__excerpts">
         <h2 className="sec-h">1-қадам. Үзінділерді оқыңыз</h2>
         <div className="exc-tabs">

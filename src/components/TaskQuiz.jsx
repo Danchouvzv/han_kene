@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react'
 import { quiz } from '../data/quiz'
 import { playCorrect, playWrong, playFinish } from '../audio'
 import Result from './Result'
+import bannerImg from '../assets/quiz-banner.jpg'
 
 const LETTERS = ['А', 'Б', 'В', 'Г']
 
@@ -65,6 +66,9 @@ export default function TaskQuiz({ onComplete }) {
 
   return (
     <div className="quiz">
+      <div className="task-banner">
+        <img src={bannerImg} alt="Кенесары хан — тарихи бейне" loading="lazy" />
+      </div>
       <div className="quiz__meter">
         <div className="quiz__meter-bar">
           <span style={{ width: `${(i / quiz.length) * 100}%` }} />
