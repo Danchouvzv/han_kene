@@ -21,7 +21,7 @@ export const TASKS = [
   {
     key: 'test',
     n: 2,
-    title: 'Тұлғаны тану',
+    title: 'Тарихи бейнені тану',
     desc: 'Теориялық материалмен танысып, Кенесары бейнесі бойынша 10 сұрақтан тұратын экспресс-тестті орындаңыз.',
   },
   {
@@ -169,7 +169,7 @@ export default function App() {
             <img src={logoMark} alt="" />
           </span>
           <span className="brand__text">
-            <b>Хан Кене</b>
+            <b>Тұлғаны тану</b>
             <small>Көркем реконструкция</small>
           </span>
         </button>

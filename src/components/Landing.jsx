@@ -16,8 +16,8 @@ export default function Landing({ tasks, done, onOpen }) {
         <div className="hero__inner">
           <span className="hero__kicker">Өз бетінше білім алу платформасы</span>
           <h1 className="hero__title">
-            <span>Хан</span>
-            <span className="ln2">Кене</span>
+            <span>Тұлғаны</span>
+            <span className="ln2">тану</span>
           </h1>
           <p className="hero__subtitle">Тарихи тұлғаны көркем реконструкциялау</p>
           <p className="hero__lead">
